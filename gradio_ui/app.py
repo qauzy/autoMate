@@ -46,7 +46,7 @@ def setup_state(state):
     if "messages" not in state:
         state["messages"] = []
     if "model" not in state:
-        state["model"] = "gpt-4o"
+        state["model"] = "deepseek-v3"
     if "api_key" not in state:
         state["api_key"] = ""
     if "auth_validated" not in state:
@@ -62,7 +62,7 @@ def setup_state(state):
     if 'stop' not in state:
         state['stop'] = False
     if 'base_url' not in state: 
-        state['base_url'] = "https://api.openai-next.com/v1"
+        state['base_url'] = "https://api.lkeap.cloud.tencent.com/v1"
 
 async def main(state):
     """Render loop for Gradio"""
@@ -246,14 +246,14 @@ def run():
                 with gr.Column():
                     model = gr.Textbox(
                         label="Model",
-                        value="gpt-4o",
+                        value="deepseek-v3",
                         placeholder="输入模型名称",
                         interactive=True,
                     )
                 with gr.Column():
                     base_url = gr.Textbox(
                         label="Base URL",
-                        value="https://api.openai-next.com/v1",
+                        value="https://api.lkeap.cloud.tencent.com/v1",
                         placeholder="输入基础 URL",
                         interactive=True
                     )

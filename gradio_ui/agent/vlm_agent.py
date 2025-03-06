@@ -77,7 +77,7 @@ class VLMAgent:
             planner_messages[-1]["content"].append(f"{OUTPUT_DIR}/screenshot_som_{screenshot_uuid}.png")
 
         start = time.time()
-        if "gpt" in self.model or "o1" in self.model or "o3-mini" in self.model:
+        if "gpt" in self.model or "o1" in self.model or "o3-mini" in self.model or "deepseek-v3" in self.model:
             vlm_response, token_usage = run_oai_interleaved(
                 messages=planner_messages,
                 system=system,
@@ -91,6 +91,8 @@ class VLMAgent:
             self.total_token_usage += token_usage
             if 'gpt' in self.model:
                 self.total_cost += (token_usage * 2.5 / 1000000)  # https://openai.com/api/pricing/
+            elif 'deepseek-v3' in self.model:
+                self.total_cost += (token_usage * 15 / 1000000)  # https://openai.com/api/pricing/
             elif 'o1' in self.model:
                 self.total_cost += (token_usage * 15 / 1000000)  # https://openai.com/api/pricing/
             elif 'o3-mini' in self.model:
